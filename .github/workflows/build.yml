@@ -16,7 +16,9 @@ jobs:
           gradle-version: 8.7
       - run: unzip -q QuietNotes.zip
       - run: cd QuietNotes && gradle assembleDebug --no-daemon
+      - run: find . -name "*.apk"
       - uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1
-          files: QuietNotes/app/build/outputs/apk/debug/app-debug.apk
+          tag_name: v2.${{ github.run_number }}
+          files: "**/*.apk"
+          fail_on_unmatched_files: true
